@@ -11,6 +11,12 @@
 |
 */
 
+//id só aceita numeros
+
+Route::pattern('id', '[0-9]+');
+
+Route::get('categories', 'CategoriesController@index');
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
