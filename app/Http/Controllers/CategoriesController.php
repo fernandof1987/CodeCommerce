@@ -32,6 +32,8 @@ class CategoriesController extends Controller {
     {
         $input = $request->all();
 
+        dd($input);
+
         $category = $this->categoryModel->fill($input);
 
         $category->save();
