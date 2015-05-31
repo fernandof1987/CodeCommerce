@@ -11,14 +11,13 @@
         <br>
         <br>
 
-        <table class="table">
+        <table class="table table-hover">
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Featured</th>
-                <th>Recommended</th>
+                <th>Category</th>
                 <th>Action</th>
             </tr>
 
@@ -27,10 +26,9 @@
             <tr>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->description }}</td>
-                <td>{{ $product->Price }}</td>
-                <td>{{ $product->featured }}</td>
-                <td>{{ $product->recommended }}</td>
+                <td>{{ str_limit($product->description, $limit = 50, $end = '...') }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->category->name }}</td>
                 <td>
                     <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Edit</a> |
                     <a href="{{ route('products.destroy', ['id'=>$product->id]) }}">Delete</a>
@@ -40,6 +38,8 @@
             @endforeach
 
         </table>
+
+        {!! $products->render() !!}
 
     </div>
 

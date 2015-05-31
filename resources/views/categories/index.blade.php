@@ -11,7 +11,7 @@
         <br>
         <br>
 
-        <table class="table">
+        <table class="table table-hover">
             <tr>
                 <th>Id</th>
                 <th>Name</th>

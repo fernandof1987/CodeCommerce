@@ -24,10 +24,9 @@ class ProductTableSeeder extends Seeder
 
             Product::create([
                 'name' => $faker->word(),
-                'description' => $faker->name(),
-                'price' => $faker->word(),
-                'featured' => $faker->sentence(),
-                'recommended' => $faker->word(),
+                'description' => $faker->sentence(),
+                'price' => $faker->randomNumber(2),
+                'category_id' => $faker->numberBetween(1, 15),
             ]);
 
         }

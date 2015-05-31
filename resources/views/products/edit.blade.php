@@ -6,8 +6,12 @@
 
         <h1>Edit Product: {{ $product->name }}</h1>
 
-
         {!! Form::open(['route'=>['products.update', $product->id], 'method'=>'put']) !!}
+
+        <div class="form-group">
+            {!! Form::label('category', 'Category:') !!}
+            {!! Form::select('category_id', $categories, $product->category->id, ['class'=>'form-control']) !!}
+        </div>
 
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
@@ -25,13 +29,17 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('featured', 'Featured:') !!}
-            {!! Form::text('featured', $product->featured, ['class'=>'form-control']) !!}
-        </div>
 
-        <div class="form-group">
-            {!! Form::label('recommended', 'Recommended:') !!}
-            {!! Form::text('recommended', $product->recommended, ['class'=>'form-control']) !!}
+            <!-- Featured Form Input-->
+
+            {!! Form::label('featured') !!}
+            {!! Form::checkbox('featured', true, $product->featured, ['class'=>'checkbox-inline']) !!}
+
+            <!-- Name Recommende Input-->
+
+            {!! Form::label('recommended') !!}
+            {!! Form::checkbox('recommended', true, $product->recommended, ['class'=>'checkbox-inline']) !!}
+
         </div>
 
         <div class="form-group">
