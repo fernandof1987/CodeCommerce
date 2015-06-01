@@ -90,19 +90,31 @@ class ProductsController extends Controller {
         return view('products.create_images', compact('product'));
     }
 
-    public function storeImage(Request $request, $id, ProductImage $productImage)
+    public function storeImage(Requests\ProductImageRequest $request, $id, ProductImage $productImage)
     {
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
 
         $image = $productImage::create(['product_id'=>$id, 'extension'=>$extension]);
         //$image = $this->productModel->create(['product_id'=>$id, 'extension'=>$extension]);
-       // $image = $this->productModel->fill(['product_id'=>$id, 'extension'=>$extension]);
-       // $image->save();
-        //dd($image);
-        Storage::disk('public_local')->put($image->$id . '.' . $extension, File::get($file));
+
+        Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
 
         return redirect()->route('products.images', ['id'=>$id]);
 
+    }
+
+    public function destroyImage(ProductImage $productImage, $id)
+    {
+        $image = $productImage->find($id);
+
+        if(file_exists(public_path() . '/uploads' . $image->id . '.' . $image->extension)){
+            Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
+        }
+
+        $product = $image->product;
+        $image->delete();
+
+        return redirect()->route('products.images', ['id'=>$product->id]);
     }
 }
