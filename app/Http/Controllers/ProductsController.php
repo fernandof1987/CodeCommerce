@@ -33,7 +33,7 @@ class ProductsController extends Controller {
 		return view('products.create', compact('categories'));
 	}
 
-	public function store(Request $request)
+	public function store(Requests\ProductRequest $request)
 	{
 		$input = $request->all();
 
@@ -61,8 +61,6 @@ class ProductsController extends Controller {
 	public function update(Request $request, $id)
 	{
 		$this->productModel->find($id)->update($request->all());
-
-        dd($request->all());
 
         return redirect()->route('products');
 	}

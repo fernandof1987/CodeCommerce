@@ -20,9 +20,10 @@
 
     <style>
         .navbar{
-            background:#ccc;
+            background:#fff;
             border: 0;
             border-radius:0;
+            box-shadow: 0px 2px 4px #ccc;
         }
     </style>
 </head>
