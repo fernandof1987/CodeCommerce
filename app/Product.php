@@ -28,6 +28,23 @@ class Product extends Model {
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured','=',1);
+    }
 
+    //Tudo comecar com get e terminar Attribute vira atributo
+    //Acessar como name_description ou nameDescription
+    public function getNameDescriptionAttribute()
+    {
+        return $this->name . " - " . $this->description;
+    }
+
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name');
+
+        return implode(', ', $tags);
+    }
 
 }
