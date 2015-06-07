@@ -7,7 +7,7 @@ use CodeCommerce\Http\Requests\CategoryRequest;
 
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller {
+class AdminCategoriesController extends Controller {
 
     private $categoryModel;
 

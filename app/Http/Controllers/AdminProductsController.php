@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class ProductsController extends Controller {
+class AdminProductsController extends Controller {
 
     private $productModel;
 
