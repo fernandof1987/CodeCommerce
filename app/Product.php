@@ -33,6 +33,16 @@ class Product extends Model {
         return $query->where('featured','=',1);
     }
 
+    public function scopeRecommended($query)
+    {
+        return $query->where('recommended','=',1);
+    }
+
+    public function scopeOfCategory($query, $type)
+    {
+        return $query->where('category_id', '=', $type);
+    }
+
     //Tudo comecar com get e terminar Attribute vira atributo
     //Acessar como name_description ou nameDescription
     public function getNameDescriptionAttribute()
