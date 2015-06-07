@@ -15,10 +15,7 @@ class StoreController extends Controller {
        // $pFeatured = Product::where('featured', '=', 1)->get();
 
         $pFeatured = Product::featured()->get();
-        //dd($pFeatured);
-
         $categories = Category::all();
-
         return view('store.index', compact('categories', 'pFeatured'));
     }
 
