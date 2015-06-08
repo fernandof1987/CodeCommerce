@@ -12,8 +12,8 @@
                     <thead>
                         <tr class="cart_menu">
                             <td class="image">Item</td>
-                            <td class="description">Description</td>
-                            <td class="price">Price</td>
+                            <td class="description">Descrição</td>
+                            <td class="price">Preço</td>
                             <td class="price">Qtd</td>
                             <td class="price">Total</td>
                             <td></td>
@@ -22,18 +22,18 @@
 
                     <tbody>
 
-                    @foreach($cart->all() as $k=>$cart)
+                    @forelse($cart->all() as $k=>$item)
 
                         <tr>
 
                             <td class="cart_product">
-                                <a href="#">
+                                <a href="{{ route('store.product', ['id'=>$k]) }}">
                                     Imagem
                                 </a>
                             </td>
 
                             <td class="cart_description">
-                                <h4><a href="#">{{ $item['name'] }}</a></h4>
+                                <h4><a href="{{ route('store.product', ['id'=>$k]) }}">{{ $item['name'] }}</a></h4>
                                 <p>Código: {{ $k }}
                             </td>
 
@@ -50,11 +50,32 @@
                             </td>
 
                             <td class="cart_delete">
-                                <a href="#" class="cart_quantity_delete">Delete</a>
+                                <a href="{{ route('cart.destroy', ['id'=>$k]) }}" class="cart_quantity_delete">Delete</a>
                             </td>
 
                         </tr>
-                    @endforeach
+                    @empty
+
+                        <tr class="" colspan="6">
+                            <td class="price">
+                                <p>Nenhum item encontrado.</p>
+                            </td>
+                        </tr>
+
+                    @endforelse
+
+                    <tr class="cart_menu" >
+                        <td colspan="6">
+                            <div class="pull-right">
+                                <span>
+                                    Total: R$ {{ $cart->getTotal() }}
+                                </span>
+
+                                <a href="#" class="btn btn-default">Fechar a conta</a>
+                            </div>
+                        </td>
+                    </tr>
+
                     </tbody>
 
                 </table>
