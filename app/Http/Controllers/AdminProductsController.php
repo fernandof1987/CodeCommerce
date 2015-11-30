@@ -65,8 +65,16 @@ class AdminProductsController extends Controller {
         return redirect()->route('products');
 	}
 
-	public function destroy($id)
+	public function destroy($id, ProductImage $images)
 	{
+        $images = $images->all()->where('product_id', $id);
+
+        foreach($images as $image){
+            if(file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)){
+                Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
+            }
+        }
+
         $this->productModel->find($id)->delete(
 
         );
