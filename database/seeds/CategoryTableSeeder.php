@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use CodeCommerce\Category;
 use Faker\Factory as Faker;
 
+
 class CategoryTableSeeder extends Seeder
 {
     public function run()
