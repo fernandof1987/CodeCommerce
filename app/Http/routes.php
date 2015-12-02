@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 });
 
+Route::get('test', 'CheckoutController@test');
+
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
